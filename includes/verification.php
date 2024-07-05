@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "root"; //Default username for XAMPP is "root"
-$password = ""; //Default password for XAMPP is an empty string
+$username = "root";
+$password = ""; 
 $dbname = "main";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -36,6 +36,8 @@ if ($row && password_verify($passwordInput, $row['password'])) {
 } else {
     // Invalid username or password
     echo "Invalid username or password.";
+    header("Location: login.html"); // Redirect to the login page if the user is not authenticated
+    exit();
 }
 
 $stmt->close();
