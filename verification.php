@@ -1,16 +1,4 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = ""; 
-$dbname = "main";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
 // Get form data
 $usernameInput = $_POST['username'];
 $passwordInput = $_POST['password'];
@@ -36,7 +24,7 @@ if ($row && password_verify($passwordInput, $row['password'])) {
 } else {
     // Invalid username or password
     echo "Invalid username or password.";
-    header("Location: login.html"); // Redirect to the login page if the user is not authenticated
+    header("Location: login.php"); // Redirect to the login page if the user is not authenticated
     exit();
 }
 
