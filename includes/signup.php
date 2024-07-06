@@ -1,4 +1,7 @@
 <?php
+//Requirements
+require 'connection.php';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data
     $user_username = $_POST['username'];

@@ -47,7 +47,7 @@ if ($row && password_verify($passwordInput, $row['password'])) {
     $_SESSION['userId'] = $row['id'];
     $_SESSION['username'] = $row['username'];
 
-    header("Location: dash.php");
+    header("Location: <includes>dash.php");
     exit();
 } else {
     // Invalid username or password

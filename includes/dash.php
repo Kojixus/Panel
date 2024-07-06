@@ -7,6 +7,9 @@
 <body>
     <div class="container">
         <?php
+        //Requirements
+        require 'connection.php';
+
         // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
