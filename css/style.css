@@ -36,20 +36,15 @@ canvas {
 }
 
 form {
-    color: white; 
     background-color: rgba(0, 0, 0, 0.9); /* Set form background color to black with slight transparency */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px; /* Set a maximum width */
+    width: 400px; /* Set a maximum width */
     margin: 0 auto;
     align-items: center;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    border: 3px solid #FFC904;
-    border-radius: 10px;
+    justify-content: center;
 }
 
 .taskbar {
@@ -143,7 +138,7 @@ form input[type="submit"] {
     background-color: #2f2f2f;
     border: none;
     border-radius: 5px;
-    color: #ffffff;
+    color: #fff;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -231,9 +226,9 @@ body {
 }
 
 body {
-    background-size: auto; /* Scale the assets/img to cover the entire body */
-    background-position: center; /* Center the assets/img */
-    background-repeat: no-repeat; /* Do not repeat the assets/img */
+    background-size: auto; /* Scale the image to cover the entire body */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
     font-family: Arial, sans-serif;
     margin: 0;
     top: 0;

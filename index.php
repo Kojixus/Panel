@@ -1,9 +1,9 @@
 <!DOCTYPE html><html>
 <head>
     <title>Homepage</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="scripts/background.js"></script>
-    <link rel="icon" type="image/png" href="images/kr_favicon.png">
+    <link rel="icon" type="assets/img/png" href="assets/imgs/kr_favicon.png">
 </head>
 <div class="taskbar">
     <ul>
