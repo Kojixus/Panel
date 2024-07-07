@@ -27,17 +27,24 @@ canvas {
     z-index: 0;
 }
 
-/* Form container */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
 form {
     background-color: rgba(0, 0, 0, 0.9); /* Set form background color to black with slight transparency */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px; /* Set a maximum width */
-    transition: transform 0.3s ease;
-    position: relative; /* Ensure form is above canvas */
-    z-index: 1;
+    width: 400px; /* Set a maximum width */
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
 }
 
 .taskbar {
