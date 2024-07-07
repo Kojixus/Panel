@@ -224,7 +224,7 @@ body {
     background-repeat: no-repeat; /* Do not repeat the image */
     font-family: Arial, sans-serif;
     margin: 0;
+    top: 0;
+    bottom: 0;
     padding: 0;
 }
-
-/* Add other styles as needed */
