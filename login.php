@@ -17,6 +17,8 @@
         <form action="login.php" method="POST">
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username" required><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
             <label for="password">Password:</label><br>
             <input type="password" id="password" name="password" required><br><br>
             <input type="submit" value="Login">
@@ -32,8 +34,8 @@ session_start();
 require 'connection.php';
 
 // Get form data
-$usernameInput = $_POST['username'];
-$passwordInput = $_POST['password'];
+$usernameInput = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS);
+$passwordInput = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
 
 // Prepare and bind
 $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = ?");
@@ -54,7 +56,8 @@ if ($row && password_verify($passwordInput, $row['password'])) {
     exit();
 } else {
     // Invalid username or password
-    echo "Invalid username or password.";
+    $error_message = "Invalid username or password";
+    header("Location: login.php?error=". urlencode($error_message));
 }
 
 $stmt->close();
