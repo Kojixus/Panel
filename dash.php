@@ -32,7 +32,7 @@ $userName = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'User';
         <nav>
             <ul>
                 <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#team">Team</a></li>
+                <li><a href="team.php">Team</a></li>
                 <li><a href="#events">Events</a></li>
                 <li><a href="#car">Car</a></li>
                 <li><a href="https://www.tacobell.com/food?store=028007">Taco Bell</a></li>
