@@ -1,0 +1,136 @@
+:root {
+  --primary-color: #ffc904;
+  --secondary-color: #000000;
+  --text-color: #333333;
+  --background-color: #ffffff5c;
+  --card-background: #f8f9fa;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Add this to your existing CSS */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center; /* Center all content in the container */
+}
+
+.ucf-logo {
+  max-width: 100px;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  color: var(--secondary-color);
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  text-align: center; /* Ensure the heading is centered */
+}
+
+/* ... rest of the CSS remains the same ... */
+
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.level {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.team-member {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: 150px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  margin: 0 1rem;
+  text-align: center;
+}
+
+.team-member img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.25rem;
+}
+
+.team-member h2 {
+  font-size: 0.9rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.team-member p {
+  font-size: 0.7rem;
+  margin: 0;
+  color: #666;
+}
+
+.org-line {
+  height: 1rem;
+  border-left: 2px solid var(--border-color);
+}
+
+.org-line-horizontal {
+  width: 2px;
+  background-color: var(--border-color);
+  height: 1rem;
+  margin: 0 auto;
+}
+
+.org-line-container {
+  display: flex;
+  justify-content: center;
+}
+
+.org-line-branch {
+  width: 50%;
+  border-top: 2px solid var(--border-color);
+  position: relative;
+}
+
+.org-line-branch::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  width: 2px;
+  height: 1rem;
+  background-color: var(--border-color);
+}
+
+.org-line-branch:first-child::before {
+  right: 0;
+}
+
+.org-line-branch:last-child::before {
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .level {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-member {
+    margin-bottom: 1rem;
+  }
+
+  .org-line {
+    height: 1rem;
+  }
+}
