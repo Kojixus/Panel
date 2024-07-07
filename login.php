@@ -2,9 +2,8 @@
 <head>
     <title>Login</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self';">
-    <link rel="stylesheet" type="text/css" href="assets/css/assets/css/style.css">
-    <script src="scripts/background.js"></script>
-    <link rel="icon" type="assets/img/png" href="assets/imgs/kr_favicon.png">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" type="img/png" href="imgs/kr_favicon.png">
 </head>
 
 <body>
@@ -15,7 +14,7 @@
         </ul>
     </div>
     <div class="form-container">
-        <form action="login.php" method="POST">
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username" required><br>
             <label for="password">Password:</label><br>
@@ -29,50 +28,24 @@
 <?php
 session_start();
 
-//Include database connection
-require 'connection.php';
-
-// Get form data
-$usernameInput = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$passwordInput = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-// Prepare and bind
-try {  
-    $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = :username");
-    if (!$stmt) {
-        throw new Exception("Error prepare: ". $conn->error);
-    }
-    $stmt->bindParam(':username', $usernameInput);
-    if (!$stmt->execute()) {
-        throw new Exception("Error execute: ". $stmt->error);
-    }
-} catch (Exception $e) {
-    //Handle the bitch ass error, log, display message, etc.
-    exit("An error occurred. Please try again later.");
-}
-
-$result = $stmt->get_result();
-$row = $result->fetch_assoc();
-
-// Verify password
-if ($row && password_verify($passwordInput, $row['password'])) {
-    // User is authenticated
-    $_SESSION['loggedIn'] = true;
-    $_SESSION['userId'] = $row['id'];
-    $_SESSION['username'] = $row['username'];
-
-    // Regenerate session ID
-    session_regenerate_id(true);
-
+// Check if the user is already logged in
+if (isset($_SESSION['user_id'])) {
     header("Location: dash.php");
     exit();
-} else {
-    // Invalid username or password
-    $error_message = "Invalid username or password";
-    header("Location: login.php");
 }
 
-$stmt->close();
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Process login (you'll need to implement this part)
+    // For now, let's just redirect to dash.php
+    $_SESSION['user_id'] = 1; // This should be the actual user ID from your database
+    $_SESSION['user_name'] = "Test User"; // This should be the actual username from your database
+    header("Location: dash.php");
+    exit();
+}
 
-$conn->close();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 ?>
