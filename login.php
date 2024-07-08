@@ -3,7 +3,7 @@
     <title>Login</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self';">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="icon" type="img/png" href="imgs/kr_favicon.png">
+    <link rel="icon" type="img/png" href="img/kr_favicon.png">
 </head>
 
 <body>
@@ -27,25 +27,52 @@
 
 <?php
 session_start();
-
-// Check if the user is already logged in
-if (isset($_SESSION['user_id'])) {
-    header("Location: dash.php");
-    exit();
-}
+require 'connection.php';
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Process login (you'll need to implement this part)
-    // For now, let's just redirect to dash.php
-    $_SESSION['user_id'] = 1; // This should be the actual user ID from your database
-    $_SESSION['user_name'] = "Test User"; // This should be the actual username from your database
-    header("Location: dash.php");
-    exit();
+    // Retrieve and sanitize user input
+    $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+    $password = $_POST['password']; // We don't sanitize password as it might interfere with special characters
+
+    // Validate input
+    if (empty($username) || empty($password)) {
+        $error = "Username and password are required.";
+    } else {
+        try {
+            // Create a PDO instance
+            $pdo = new PDO("mysql:host=$serverName;dbname=$dbname", $db_username, $db_password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Prepare SQL statement
+            $stmt = $pdo->prepare("SELECT id, username, password FROM users WHERE username = :username");
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user && password_verify($password, $user['password'])) {
+                // Password is correct, start a new session
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_name'] = $user['username'];
+
+                // Redirect to dashboard
+                header("Location: dash.php");
+                exit();
+            } else {
+                // Invalid credentials
+                $error = "Invalid username or password.";
+            }
+        } catch(PDOException $e) {
+            $error = "Login failed: " . $e->getMessage();
+        }
+    }
+
+    // If there's an error, you might want to redirect back to the login page with an error message
+    if (isset($error)) {
+        $_SESSION['login_error'] = $error;
+        header("Location: login.php");
+        exit();
+    }
 }
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-
 ?>
