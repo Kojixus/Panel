@@ -1,0 +1,115 @@
+:root {
+    --ucf-gold: #FFC904;
+    --ucf-black: #000000;
+    --ucf-gray: #616161;
+    --racing-red: #FF0000;
+}
+
+body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: var(--ucf-black);
+}
+
+.header {
+    background-color: var(--ucf-black);
+    color: var(--ucf-gold);
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--ucf-gold),
+        var(--ucf-gold) 10px,
+        var(--ucf-black) 10px,
+        var(--ucf-black) 20px
+    );
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.header p {
+    margin: 10px 0 0;
+    font-size: 1.2em;
+    color: var(--racing-red);
+    font-style: italic;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.profile-container::after {
+    content: "🏎️";
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 2em;
+    opacity: 0.2;
+}
+
+h2 {
+    color: var(--ucf-black);
+    border-bottom: 3px solid var(--racing-red);
+    padding-bottom: 10px;
+    margin-top: 30px;
+    display: inline-block;
+}
+
+.profile-info {
+    margin-bottom: 30px;
+}
+
+.profile-info p {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.skills-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skills-list li {
+    background-color: var(--ucf-gold);
+    color: var(--ucf-black);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.skills-list li:hover {
+    transform: scale(1.05);
+    background-color: var(--racing-red);
+    color: #fff;
+}
