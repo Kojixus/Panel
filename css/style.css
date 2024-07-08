@@ -235,3 +235,16 @@ body {
     bottom: 0;
     padding: 0;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* This makes the container full height of the viewport */
+}
+
+.centered-image {
+  max-width: 100%; /* Ensures the image doesn't overflow the container */
+  max-height: 100%; /* Ensures the image doesn't overflow the container */
+  object-fit: contain; /* Maintains aspect ratio */
+}
