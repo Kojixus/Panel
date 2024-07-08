@@ -1,74 +1,130 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UCF Organizational Structure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/team.css">
 </head>
+<?php include 'header.php';?>
 <body>
     <div class="container">
-        <img src="img/kr.jpg" alt="UCF Logo" class="ucf-logo">
         <h1>UCF Organizational Structure</h1>
         <div class="org-chart">
             <?php
             $teamStructure = [
                 [
-                    'name' => 'Mona',
-                    'position' => 'Director',
-                    'image' => 'img/person.jpg',
+                    'name' => 'Pete Alfieris',
+                    'position' => 'Faculty Advisor',
+                    'section' => 'UCF Faculty'
                 ],
                 [
-                    'name' => 'Ur Mom',
-                    'position' => 'not enough',
-                    'image' => 'img/person.jpg',
+                    'name' => 'TBD',
+                    'position' => 'Accountant',
+                    'section' => 'UCF Faculty'
                 ],
                 [
-                    'name' => 'car on fire',
-                    'position' => 'EV Team',
-                    'image' => 'img/person.jpg',
+                    'name' => 'Hugo Bussy',
+                    'position' => 'Administrative Director & DAQ',
+                    'section' => 'Officers'
                 ],
                 [
-                    'name' => 'taco bell',
-                    'position' => 'crack whore',
-                    'image' => 'img/person.jpg',
+                    'name' => 'Tony Reyes',
+                    'position' => 'Assistant Administrative Director',
+                    'section' => 'Officers'
                 ],
+                [
+                    'name' => 'Gonzalo Montoya',
+                    'position' => 'Technical Director & Aerodynamics',
+                    'section' => 'Officers'
+                ],
+                [
+                    'name' => 'Suzannah Newhouse',
+                    'position' => 'Financial Director',
+                    'section' => 'Officers'
+                ],
+                [
+                    'name' => 'Dezso Kovi',
+                    'position' => 'Assistant Director & Website Developer',
+                    'section' => 'Officers'
+                ],
+                [
+                    'name' => 'Tyler Bell',
+                    'position' => 'Composites',
+                    'section' => 'Lead'
+                ],
+                [
+                    'name' => 'Sophia McNeill',
+                    'position' => 'Chassis',
+                    'section' => 'Lead'
+                ],
+                [
+                    'name' => 'Austin Back',
+                    'position' => 'Brakes',
+                    'section' => 'Lead'
+                ],
+                [
+                    'name' => 'LeAidan Smith',
+                    'position' => 'Ergonomics',
+                    'section' => 'Lead'
+                ],
+                [
+                    'name' => 'Andrew Mierau',
+                    'position' => 'Electrical',
+                    'section' => 'Lead'
+                ],
+                [
+                    'name' => 'Jose Ojeda',
+                    'position' => 'Electronics',
+                    'section' => 'Lead'
+                ],
+                [
+                    'name' => 'Riley Chunko',
+                    'position' => 'Powertrain',
+                    'section' => 'Lead'
+                ],
+                [
+                    'name' => 'Nipun Warusawithana',
+                    'position' => 'Suspension',
+                    'section' => 'Lead'
+                ],
+                [
+                    'name' => 'Justin Wills',
+                    'position' => 'Business',
+                    'section' => 'Lead'
+                ],
+                [
+                    'name' => 'Sean Lynch',
+                    'position' => 'Outreach',
+                    'section' => 'Lead'
+                ],
+                [
+                    'name' => 'Miguel Torres',
+                    'position' => 'Manufacturing',
+                    'section' => 'Lead'
+                ]
             ];
 
-            foreach ($teamStructure as $index => $member) {
-                if ($index == 0) {
-                    echo "<div class='level'>";
-                    echo "<div class='team-member'>";
-                    echo "<img src='{$member['image']}' alt='{$member['name']}'>";
-                    echo "<h2>{$member['name']}</h2>";
-                    echo "<p>{$member['position']}</p>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "<div class='org-line-horizontal'></div>";
-                } elseif ($index == 1) {
-                    echo "<div class='level'>";
-                    echo "<div class='team-member'>";
-                    echo "<img src='{$member['image']}' alt='{$member['name']}'>";
-                    echo "<h2>{$member['name']}</h2>";
-                    echo "<p>{$member['position']}</p>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "<div class='org-line-horizontal'></div>";
-                    echo "<div class='org-line-container'>";
-                    echo "<div class='org-line-branch'></div>";
-                    echo "<div class='org-line-branch'></div>";
-                    echo "</div>";
-                } else {
-                    if ($index == 2) echo "<div class='level'>";
-                    echo "<div class='team-member'>";
-                    echo "<img src='{$member['image']}' alt='{$member['name']}'>";
-                    echo "<h2>{$member['name']}</h2>";
-                    echo "<p>{$member['position']}</p>";
-                    echo "</div>";
-                    if ($index == count($teamStructure) - 1) echo "</div>";
+            $sections = array_unique(array_column($teamStructure, 'section'));
+            foreach ($sections as $section) {
+                echo "<h2>$section</h2>";
+                echo "<div class='level'>";
+                foreach ($teamStructure as $member) {
+                    if ($member['section'] == $section) {
+                        echo "<div class='team-member'>";
+                        echo "<h2>{$member['name']}</h2>";
+                        echo "<p>{$member['position']}</p>";
+                        echo "</div>";
+                    }
                 }
+                echo "</div>";
             }
             ?>
         </div>
     </div>
+</div>
+<?php include 'footer.php';?>
 </html>
