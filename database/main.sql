@@ -4,11 +4,6 @@ CREATE DATABASE main;
 -- Use the database
 USE main;
 
-CREATE TABLE labels (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL UNIQUE
-);
-
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL UNIQUE,
@@ -16,6 +11,29 @@ CREATE TABLE users (
     email VARCHAR(255) NOT NULL UNIQUE,
     role ENUM('user', 'officer', 'lead') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE labels (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE profiles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    major VARCHAR(255),
+    year VARCHAR(255),
+    role VARCHAR(255),
+    bio TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE profile_labels (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    profile_id INT,
+    label_id INT,
+    FOREIGN KEY (profile_id) REFERENCES profiles(id),
+    FOREIGN KEY (label_id) REFERENCES labels(id)
 );
 
 CREATE TABLE projects (
