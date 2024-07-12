@@ -18,7 +18,7 @@ $userName = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'User';
     <title>UCF Formula Club Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/ucf-formula-club-theme.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <?php include 'header.php';?>
 <body>
