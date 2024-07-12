@@ -4,36 +4,27 @@ CREATE DATABASE main;
 -- Use the database
 USE main;
 
+-- Drop existing tables if they exist
+DROP TABLE IF EXISTS users;
+
+-- Create users table
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL UNIQUE,
+    username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    role ENUM('user', 'officer', 'lead') DEFAULT 'user',
+    email VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(100),
+    major VARCHAR(100),
+    year VARCHAR(20),
+    role VARCHAR(100),
+    bio TEXT,
+    skills TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE labels (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL UNIQUE
-);
-
-CREATE TABLE profiles (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    major VARCHAR(255),
-    year VARCHAR(255),
-    role VARCHAR(255),
-    bio TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
-CREATE TABLE profile_labels (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    profile_id INT,
-    label_id INT,
-    FOREIGN KEY (profile_id) REFERENCES profiles(id),
-    FOREIGN KEY (label_id) REFERENCES labels(id)
 );
 
 CREATE TABLE projects (
