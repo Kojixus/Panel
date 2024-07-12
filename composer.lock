@@ -1,0 +1,42 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "content-hash": "1234567890abcdef",
+    "packages": [
+        {
+            "name": "php",
+            "version": "8.1.7",
+            "source": {
+                "type": "php",
+                "root": true
+            },
+            "dist": {
+                "type": "php",
+                "root": true
+            }
+        },
+        {
+            "name": "symfony/polyfill-mbstring",
+            "version": "v1.25.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-mbstring.git",
+                "reference": "4289587b875f6a6d805f947a5d5a6b5b7b1b5a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/4289587b875f6a6d805f947a5d5a6b5b7b1b5a1",
+                "reference": "4289587b875f6a6d805f947a5d5a6b5b7b1b5a1",
+                "shasum": "sha256:1234567890abcdef"
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "platform": [],
+    "platform-dev": []
+}
