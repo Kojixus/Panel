@@ -55,6 +55,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Password is correct, start a new session
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['username'];
+                
+                $_SESSION['logged_in'] = true;
 
                 // Redirect to dashboard
                 header("Location: dash.php");
