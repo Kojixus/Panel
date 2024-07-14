@@ -1,0 +1,188 @@
+/* UCF Formula Update Profile CSS - Modern and User-Friendly */
+
+:root {
+  --ucf-gold: #FFC904;
+  --ucf-black: #000000;
+  --ucf-gray: #616161;
+  --ucf-light-gray: #F1F1F1;
+  --white: #FFFFFF;
+  --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Roboto', 'Arial', sans-serif;
+  background-color: var(--ucf-light-gray);
+  color: var(--ucf-black);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+}
+
+h1 {
+  color: var(--ucf-black);
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+label {
+  font-weight: 500;
+  color: var(--ucf-gray);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--ucf-light-gray);
+  border-radius: 8px;
+  background-color: var(--white);
+  color: var(--ucf-black);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--ucf-gold);
+  box-shadow: 0 0 0 3px rgba(255, 201, 4, 0.2);
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.button {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.button-primary {
+  background-color: var(--ucf-gold);
+  color: var(--ucf-black);
+}
+
+.button-secondary {
+  background-color: var(--ucf-light-gray);
+  color: var(--ucf-black);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.button-primary:hover {
+  background-color: #FFD700;
+}
+
+.button-secondary:hover {
+  background-color: #E0E0E0;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--ucf-gold);
+  margin: 0 auto 2rem;
+  display: block;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+  color: #FF3B30;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.success-message {
+  color: #34C759;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: rgba(52, 199, 89, 0.1);
+  border-radius: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .container {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .button-container {
+    flex-direction: column-reverse;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.skill-checkbox {
+    display: none;
+}
+.skill-label {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.skill-checkbox:checked + .skill-label {
+    background-color: #4CAF50;
+    color: white;
+}
