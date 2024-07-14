@@ -1,9 +1,26 @@
 <?php
-$loggedIn = isset($_SESSION['user_id']);
+// Start the session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-$_SESSION['user_id'] = $user['id'];
-$_SESSION['user_name'] = $user['name'];
+// Check if the user is logged in
+$loggedIn = isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
+
+// Ensure $user is set and contains the expected data
+if (isset($user) && is_array($user) && isset($user['id'], $user['name'])) {
+    // Use null coalescing operator to set default values
+    $_SESSION['user_id'] = $user['id'] ?? null;
+    $_SESSION['user_name'] = $user['name'] ?? '';
+
+    // Optionally, you can add a timestamp for the login
+    $_SESSION['login_time'] = time();
+} else {
+    // Log an error or handle the case where $user is not properly set
+    error_log('User data is not properly set');
+}
 ?>
+
 
 <!-- header.php -->
 <!DOCTYPE html>
@@ -23,7 +40,9 @@ $_SESSION['user_name'] = $user['name'];
         </div>
         <nav>
             <ul class="nav-menu">
-                <li><a href="#">Home</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="dash.php">Dash</a></li>
+                <li><a href="team.php">Team</a></li>
             </ul>
         </nav>
         <div class="user-actions">
