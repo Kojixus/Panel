@@ -1,7 +1,8 @@
 <?php
 session_start();
-require 'connection.php';
+require_once 'connection.php';
 // Initialize variables
+$conn = new mysqli($serverName, $db_username, $db_password, $dbname);
 $user_id = $_SESSION['user_id'] ?? 0; // Assume user_id is stored in session after login
 $username = $email = $name = $major = $year = $role = $bio = $skills = '';
 
@@ -24,16 +25,40 @@ if ($user_id > 0) {
     $stmt->close();
 }
 
+//Define a list of skills
+
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate and sanitize input
-    $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
+    $name = filter_input(INPUT_POST, 'name', FILTER_UNSAFE_RAW);
+    $name = strip_tags($name);
+    
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $major = filter_input(INPUT_POST, 'major', FILTER_SANITIZE_STRING);
-    $year = filter_input(INPUT_POST, 'year', FILTER_SANITIZE_STRING);
-    $role = filter_input(INPUT_POST, 'role', FILTER_SANITIZE_STRING);
-    $bio = filter_input(INPUT_POST, 'bio', FILTER_SANITIZE_STRING);
-    $skills = filter_input(INPUT_POST, 'skills', FILTER_SANITIZE_STRING);
+    
+    $major = filter_input(INPUT_POST, 'major', FILTER_UNSAFE_RAW);
+    $major = strip_tags($major);
+    
+    $year = filter_input(INPUT_POST, 'year', FILTER_UNSAFE_RAW);
+    $year = strip_tags($year);
+    
+    $role = filter_input(INPUT_POST, 'role', FILTER_UNSAFE_RAW);
+    $role = strip_tags($role);
+    
+    $bio = filter_input(INPUT_POST, 'bio', FILTER_UNSAFE_RAW);
+    $bio = strip_tags($bio);
+    
+    // Handle skills
+    $selectedSkills = isset($_POST['skills']) ? $_POST['skills'] : [];
+    $selectedSkills = array_intersect($skillsList, $selectedSkills);
+    $skills = implode(',', $selectedSkills); // Ensure only valid skills are selected
+}
+
+$skillsList = [
+    'Web Development', 'Mobile App Development', 'Data Analysis',
+    'Machine Learning', 'Artificial Intelligence', 'Cloud Computing',
+    'Cybersecurity', 'DevOps', 'UI/UX Design', 'Game Development',
+    'Blockchain', 'IoT', 'AR/VR', 'Robotics'
+];
 
     // Update database
     $stmt = $conn->prepare("UPDATE users SET name = ?, email = ?, major = ?, year = ?, role = ?, bio = ?, skills = ? WHERE id = ?");
@@ -45,7 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $update_message = "Error updating profile: " . $conn->error;
     }
     $stmt->close();
-}
 
 // Close the database connection
 $conn->close();
@@ -84,41 +108,31 @@ $conn->close();
                     <p><strong>Bio:</strong> <?php echo htmlspecialchars($bio); ?></p>
                     <p><strong>Skills:</strong> <?php echo htmlspecialchars($skills); ?></p>
                 </div>
+                <a href="update-profile.php">Update Profile</a>
             </div>
-            <h3>Update Your Profile</h3>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" class="update-form">
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($name); ?>" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
-                </div>
-                <div class="form-group">
-                    <label for="major">Major:</label>
-                    <input type="text" id="major" name="major" value="<?php echo htmlspecialchars($major); ?>">
-                </div>
-                <div class="form-group">
-                    <label for="year">Year:</label>
-                    <input type="text" id="year" name="year" value="<?php echo htmlspecialchars($year); ?>">
-                </div>
-                <div class="form-group">
-                    <label for="role">Role:</label>
-                    <input type="text" id="role" name="role" value="<?php echo htmlspecialchars($role); ?>">
-                </div>
-                <div class="form-group">
-                    <label for="bio">Bio:</label>
-                    <textarea id="bio" name="bio" rows="4"><?php echo htmlspecialchars($bio); ?></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="skills">Skills (comma-separated):</label>
-                    <input type="text" id="skills" name="skills" value="<?php echo htmlspecialchars($skills); ?>">
-                </div>
-                <button type="submit" class="submit-btn">Update Profile</button>
-            </form>
         </div>
     </main>
+    <form method="POST" action="">
+        <!-- Other form fields... -->
+        
+        <fieldset>
+            <legend>Skills</legend>
+            <div class="skills-container">
+                <?php foreach ($skillsList as $skill): ?>
+                    <div>
+                        <input type="checkbox" id="skill_<?php echo htmlspecialchars($skill); ?>" 
+                               name="skills[]" value="<?php echo htmlspecialchars($skill); ?>" 
+                               class="skill-checkbox">
+                        <label for="skill_<?php echo htmlspecialchars($skill); ?>" class="skill-label">
+                            <?php echo htmlspecialchars($skill); ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </fieldset>
+        
+        <input type="submit" value="Submit">
+    </form>
 </body>
 <?php include 'footer.php';?>
 </html>
