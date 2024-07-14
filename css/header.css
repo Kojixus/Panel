@@ -148,3 +148,38 @@
     background-color: var(--ucf-gray);
     margin-right: 10px;
 }
+
+.profile-btn:hover, .login-btn:hover {
+    background-color: var(--racing-red);
+    color: var(--ucf-white);
+}
+
+.profile-btn, .login-btn {
+    background-color: var(--ucf-gold);
+    color: var(--ucf-black);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.profile-btn:hover, .login-btn:hover {
+    background-color: var(--racing-red);
+    color: var(--ucf-white);
+}
+
+.logout-btn {
+    background-color: var(--ucf-gray);
+    color: var(--ucf-white);
+}
+
+.logout-btn:hover {
+    background-color: var(--racing-red);
+}
