@@ -185,3 +185,45 @@ body {
 .user-actions > * {
     margin-left: 10px;
 }
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.skill-checkbox {
+    display: none;
+}
+.skill-label {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.skill-checkbox:checked + .skill-label {
+    background-color: #4CAF50;
+    color: white;
+}
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.skill-checkbox {
+    display: none;
+}
+.skill-label {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.skill-checkbox:checked + .skill-label {
+    background-color: #4CAF50;
+    color: white;
+}
